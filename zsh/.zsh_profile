@@ -26,7 +26,7 @@ alias ws="cd ~/Dev/"
 alias zsh="cursor ~/.dotfiles/."
 alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
 alias pn="pnpm"
-alias get-some='pn && pn start'
+alias get-some='pn install && pn start'
 
 # git alias
 alias grt="remove_git_tag"
