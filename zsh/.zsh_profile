@@ -25,8 +25,8 @@ alias change_hosts="sudo nano /etc/hosts"
 alias ws="cd ~/Dev/"
 alias zsh="cursor ~/.dotfiles/."
 alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
-alias vtop="vtop --theme wizard"
-alias get-some='yarn && yarn start'
+alias pn="pnpm"
+alias get-some='pn && pn start'
 
 # git alias
 alias grt="remove_git_tag"
