@@ -1,0 +1,46 @@
+[user]
+	email = shaunbent@me.com
+	name = Shaun Bent
+
+[alias]
+	st = status
+	sts = status -sb
+	unstage = reset HEAD --
+	br = !git for-each-ref --sort='authordate:iso8601' --format=' %(authordate:relative)%09%(refname)' refs/heads | sed 's/refs\\/heads\\/    //g'
+
+[core]
+	excludesfiles = ~/.gitignore_global
+ 	excludesfile = ~/.gitignore_global
+	editor = nano
+
+[color]
+	ui = true
+	commit = red
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
+
+[color "status"]
+	added = green
+	changed = red
+	untracked = blue
+
+[push]
+	default = simple
+
+[url "https://github"]
+	insteadOf = git://github
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
