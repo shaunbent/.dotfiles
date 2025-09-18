@@ -2,6 +2,9 @@
 eval "$(starship init zsh)"
 eval "$(thefuck --alias f)"
 
+# Load starship prompt config
+export STARSHIP_CONFIG=~/.dotfiles/zsh/starship.toml
+
 # Make nano the default editor
 export EDITOR="nano"
 # Increase the maximum number of lines contained in the history file
