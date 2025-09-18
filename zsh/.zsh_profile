@@ -1,0 +1,75 @@
+# Load prompt and alias thefuck
+eval "$(starship init zsh)"
+eval "$(thefuck --alias f)"
+
+# Make nano the default editor
+export EDITOR="nano"
+# Increase the maximum number of lines contained in the history file
+# (default is 500)
+export HISTFILESIZE=10000
+# Increase the maximum number of commands to remember
+# (default is 500)
+export HISTSIZE=10000
+# Make some commands not show up in history
+export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
+# Make new shells get the history lines from all previous
+# shells instead of the default "last window closed" history
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Shortcuts
+alias hd="cd ~"
+alias change_hosts="sudo nano /etc/hosts"
+alias ws="cd ~/Dev/"
+alias zsh="cursor ~/.dotfiles/."
+alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
+alias vtop="vtop --theme wizard"
+alias get-some='yarn && yarn start'
+
+# git alias
+alias grt="remove_git_tag"
+
+# Create a new directory and enter it
+function md() {
+    mkdir -p "$@" && cd "$@"
+}
+
+# get gzipped size
+function gz() {
+    echo "orig size    (bytes): "
+    cat "$1" | wc -c
+    echo "gzipped size (bytes): "
+    gzip -c "$1" | wc -c
+}
+
+# copy me ssh key
+function copy-ssh-key() {
+    cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+}
+
+# remove git tag
+function remove_git_tag() {
+    git tag -d "$1"
+    git push origin :refs/tags/"$1"
+}
+
+# Generate release notes by diffing the commits between two tags
+function git-release-notes() {
+    git log $1...$2 --oneline | sed -e 's/^/\* /' | tail -n +2 | pbcopy;
+}
+
+# Give finder a bit of kick
+function restart_finder() {
+    killall Finder
+}
+
+# Lets see them hidden files
+function show_hidden_files() {
+    defaults write com.apple.finder AppleShowAllFiles TRUE
+    restart_finder
+}
+
+# I dont want to see them hidden files
+function hide_hidden_files() {
+    defaults write com.apple.finder AppleShowAllFiles FALSE
+    restart_finder
+}
